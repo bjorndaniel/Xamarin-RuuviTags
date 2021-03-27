@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xamarin_RuuviTags.MainPage">
+
+    <Grid Padding="10,30,10,10" BackgroundColor="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="80" />
+        </Grid.RowDefinitions> 
+        <ScrollView Grid.Row="0">
+            <ListView ItemsSource="{Binding Tags}" HasUnevenRows="True" BackgroundColor="LightGray">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding MacAddress}" TextColor="Black" FontSize="30"></Label>
+                                <Label Text="{Binding TimeStampDisplay}" TextColor="Black" FontSize="14"></Label>
+                                <Label Text="{Binding TemperatureDisplay}" TextColor="Black" FontSize="14"></Label>
+                                <Label Text="{Binding HumidityDisplay}" TextColor="Black" FontSize="14"></Label>
+                                <Label Text="{Binding BatteryDisplay}" TextColor="Black" FontSize="14"></Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+        <StackLayout Grid.Row="1" Orientation="Vertical" VerticalOptions="End">
+            <Label Text="Scanning..." HorizontalTextAlignment="Center" TextColor="Black" IsVisible="{Binding IsBusy}"></Label>
+            <Button VerticalOptions="End"  Text="Start Scan"  Command="{Binding StartScanCommand}"
+                        BackgroundColor="Black"
+                        TextColor="White" />
+        </StackLayout>
+
+    </Grid>
+</ContentPage>
